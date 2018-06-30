@@ -1,0 +1,7 @@
+c:\users\seth  rudisill\source\repos\ScoreBoard2\ScoreBoard2\bin\Debug\ScoreBoard2.exe.config
+c:\users\seth  rudisill\source\repos\ScoreBoard2\ScoreBoard2\bin\Debug\ScoreBoard2.exe
+c:\users\seth  rudisill\source\repos\ScoreBoard2\ScoreBoard2\bin\Debug\ScoreBoard2.pdb
+c:\users\seth  rudisill\source\repos\ScoreBoard2\ScoreBoard2\obj\Debug\ScoreBoard2.csprojResolveAssemblyReference.cache
+c:\users\seth  rudisill\source\repos\ScoreBoard2\ScoreBoard2\obj\Debug\ScoreBoard2.csproj.CoreCompileInputs.cache
+c:\users\seth  rudisill\source\repos\ScoreBoard2\ScoreBoard2\obj\Debug\ScoreBoard2.exe
+c:\users\seth  rudisill\source\repos\ScoreBoard2\ScoreBoard2\obj\Debug\ScoreBoard2.pdb
