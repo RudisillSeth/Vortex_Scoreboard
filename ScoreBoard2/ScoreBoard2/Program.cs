@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Configuration;
+using System.Collections.Specialized;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,25 +13,32 @@ namespace ScoreBoard2
     {
         static void Main(string[] args)
         {
+            Console.Clear();
             Console.ForegroundColor = ConsoleColor.Green;
             string title;
-            string ans;
             string nameScoreTitan;
             string nameScoreLegend;
             string nameScoreChamp;
             string rank;
             string input;
             int inNum;
-            string pos;
-            int posNum;
-            int truePos;
-            string name;
-            bool go = true;
-            List<string> titles = new List<string>() { "after burner", "asteroids", "burgertime", "centipede", "commando", "crystal castle", "defender","digdug", "donkey kong", "food fight", "frogger"};
-            List<string> titanS = new List<string>() { "//?//?//?", "//?//?//?", "james bakeman/1,648,050", "james bakeman/548,572", "//?//?//?", "//?//?//?", "wes copeland/2,391,400", "james bakeman/1,633,470", "wes copeland/1,124,000", "//?//?//?", "aaron kempf/112,200" };
-            List<string> legendS = new List<string>() { "andrew garrett/4,078,830", "//?//?//?", "//?//?//?", "mike dietrich,429,747","james bakeman/199,600","andrew garrett/547,934","larue linsen/517,225","josh hill/728,110","andrew garrett/816,800","aj coleman/620,200", "james bakeman/95,440" };
-            List<string> champS = new List<string>() { "charles hoeffken/2,492,040", "mike dietrich/76,830", "//?//?//?", "steve chapman/129,879","eric marchand/8,600","ryan pennell/546,389","james bakeman/225,300","mich marchand/28,070","josh mayden/347,300","conner lloyd/161,800", "cody chambers/45,210" };
 
+            string sAttr;
+            string sAttr2;
+            string sAttr3;
+            string sAttr4;
+
+            sAttr = ConfigurationManager.AppSettings.Get("Key0");
+            List<string> titles = sAttr.Split(',').ToList();
+
+            sAttr2 = ConfigurationManager.AppSettings.Get("Key1");
+            List<string> titanS = sAttr2.Split(',').ToList();
+
+            sAttr3 = ConfigurationManager.AppSettings.Get("Key2");
+            List<string> legendS = sAttr3.Split(',').ToList();
+
+            sAttr4 = ConfigurationManager.AppSettings.Get("Key3");
+            List<string> champS = sAttr4.Split(',').ToList();
 
             //converts titles into console art titles
             string[] a = new string[8] { "     ______  ", "    /      | ", "   /  /|   | ", "  /  /_|   | ", " /   __    | ", "/   /  |   | ", "|   |  |   | ", "|___|  |___| " };
@@ -107,323 +116,17 @@ namespace ScoreBoard2
             string[] zero = new string[4] { @"//====\\ ", "||    || ", "||    || ", @"\\====// " };
             string[] comma2 = new string[4] { "   ", "   ", "   ", "// " };
 
-            start:
-            Console.WriteLine("Whould you like to edit or find a game? 1 for edit, 2 for games, 3 for exit.");
+            Console.WriteLine("Would you like to find a game? y or n");
             input = Console.ReadLine();
-            while (!(int.TryParse(input, out inNum)))
+            while (string.IsNullOrWhiteSpace(input) || int.TryParse(input, out inNum))
             {
-                Console.WriteLine("Incorrect selection, please try again.\r\n");
+                Console.WriteLine("Invalid input, please use y or n");
                 input = Console.ReadLine();
             }
-            if (input == "1")
+
+            if (input == "y")
             {
-                Console.WriteLine("Would you like to add or remove something? 1 for add 2 for remove.");
-                input = Console.ReadLine();
-                while (!(int.TryParse(input, out inNum)))
-                {
-                    Console.WriteLine("Nothing was entered, please try again.\r\n");
-                    input = Console.ReadLine();
-                }
-                if (input == "1")
-                {
-                    Console.WriteLine("What would you like to add? 1 for titles 2 for names and scores.");
-                    input = Console.ReadLine();
-                    while (!(int.TryParse(input, out inNum)))
-                    {
-                        Console.WriteLine("Nothing was entered, please try again.\r\n");
-                        input = Console.ReadLine();
-                    }
-                    if (input == "1")
-                    {
-                        Console.WriteLine("What position would you like the title?");
-                        pos = Console.ReadLine();
-
-                        while (!(int.TryParse(pos, out posNum)))
-                        {
-                            Console.WriteLine("A number was not entered, please enter a number.\r\n");
-                            pos = Console.ReadLine();
-                        }
-                        truePos = posNum - 1;
-
-                        Console.WriteLine("What is the title of the game?");
-                        name = Console.ReadLine();
-
-                        while (string.IsNullOrWhiteSpace(name))
-                        {
-                            Console.WriteLine("Nothing was entered, please try again.\r\n");
-                            name = Console.ReadLine();
-                        }
-
-                        titles.Insert(truePos, name);
-                        Console.WriteLine("ADDED");
-                        Console.WriteLine("Are you sure your finished? Y for yes N for no.");
-                        ans = Console.ReadLine();
-                        while (string.IsNullOrWhiteSpace(ans))
-                        {
-                            Console.WriteLine("Nothing was entered, please try again.");
-                            ans = Console.ReadLine();
-                        }
-                        if (ans == "y")
-                        {
-                            Console.WriteLine("Goodbye");
-                            Thread.Sleep(2000);
-                            Console.Clear();
-                        }
-                        else if (ans == "n")
-                        {
-                            goto start;
-                        }
-                    }
-                    else if (input == "2")
-                    {
-                        Console.WriteLine("Which rank would you like to add to? 1 for titan, 2 for legend, 3 for champion.");
-                        input = Console.ReadLine();
-                        while (!(int.TryParse(input, out inNum)))
-                        {
-                            Console.WriteLine("Incorrect selection, please try again.");
-                            input = Console.ReadLine();
-                        }
-                        if (input == "1")
-                        {
-                            Console.WriteLine("What position would you like the name and score?");
-                            pos = Console.ReadLine();
-                            while (!(int.TryParse(pos, out posNum)))
-                            {
-                                Console.WriteLine("A number was not entered, please enter a number.");
-                                pos = Console.ReadLine();
-                            }
-                            truePos = posNum - 1;
-
-                            Console.WriteLine("What is the name and score?");
-                            name = Console.ReadLine();
-                            while (string.IsNullOrWhiteSpace(name))
-                            {
-                                Console.WriteLine("Nothing was entered, please try again.\r\n");
-                                name = Console.ReadLine();
-                            }
-
-                            titanS.Insert(truePos, name);
-                            Console.WriteLine("ADDED");
-                            Console.WriteLine("Are you sure your finished? Y for yes N for no.");
-                            ans = Console.ReadLine();
-                            if (ans == "y")
-                            {
-                                Console.WriteLine("Goodbye");
-                                Thread.Sleep(2000);
-                                Console.Clear();
-                            }
-                            else if (ans == "n")
-                            {
-                                goto start;
-                            }
-                        }
-                        else if (input == "2")
-                        {
-                            Console.WriteLine("What position would you like the name and score?");
-                            pos = Console.ReadLine();
-
-                            while (!(int.TryParse(pos, out posNum)))
-                            {
-                                Console.WriteLine("A number was not entered, please enter a number.");
-                                pos = Console.ReadLine();
-                            }
-                            truePos = posNum - 1;
-
-                            Console.WriteLine("What is the name and score?");
-                            name = Console.ReadLine();
-                            while (string.IsNullOrWhiteSpace(name))
-                            {
-                                Console.WriteLine("Nothing was entered, please try again.\r\n");
-                                name = Console.ReadLine();
-                            }
-
-                            legendS.Insert(truePos, name);
-                            Console.WriteLine("ADDED");
-                            Console.WriteLine("Are you sure your finished? Y for yes N for no.");
-                            ans = Console.ReadLine();
-                            if (ans == "y")
-                            {
-                                Console.WriteLine("Goodbye");
-                                Thread.Sleep(2000);
-                                Console.Clear();
-                            }
-                            else if (ans == "n")
-                            {
-                                goto start;
-                            }
-                        }
-                        else if (input == "3")
-                        {
-                            Console.WriteLine("What position would you like the name and score?");
-                            pos = Console.ReadLine();
-
-                            while (!(int.TryParse(pos, out posNum)))
-                            {
-                                Console.WriteLine("A number was not entered, please enter a number.");
-                                pos = Console.ReadLine();
-                            }
-                            truePos = posNum - 1;
-                            Console.WriteLine("What is the name and score?");
-                            name = Console.ReadLine();
-
-                            while (string.IsNullOrWhiteSpace(name))
-                            {
-                                Console.WriteLine("Nothing was entered, please try again.\r\n");
-                                name = Console.ReadLine();
-                            }
-
-                            champS.Insert(truePos, name);
-                            Console.WriteLine("ADDED");
-                            Console.WriteLine("Are you sure your finished? Y for yes N for no.");
-                            ans = Console.ReadLine();
-                            if (ans == "y")
-                            {
-                                Console.WriteLine("Goodbye");
-                                Thread.Sleep(2000);
-                                Console.Clear();
-                            }
-                            else if (ans == "n")
-                            {
-                                goto start;
-                            }
-                        }
-                    }
-                }
-                else if (input == "2")
-                {
-                    Console.WriteLine("What would you like to remove? 1 for titles 2 for names and scores.");
-                    input = Console.ReadLine();
-                    while (!(int.TryParse(input, out inNum)))
-                    {
-                        Console.WriteLine("Incorrect selection, please try again.");
-                        input = Console.ReadLine();
-                    }
-                    if (input == "1")
-                    {
-                        Console.WriteLine("What title would you like to remove?");
-                        name = Console.ReadLine();
-                        titles.Remove(name);
-                        Console.WriteLine("REMOVED");
-                        Console.WriteLine("Are you sure your finished? Y for yes N for no.");
-                        ans = Console.ReadLine();
-                        while (string.IsNullOrWhiteSpace(ans))
-                        {
-                            Console.WriteLine("Nothing was entered, please try again.");
-                            ans = Console.ReadLine();
-                        }
-                        if (ans == "y")
-                        {
-                            Console.WriteLine("Goodbye");
-                            Thread.Sleep(2000);
-                            Console.Clear();
-                        }
-                        else if (ans == "n")
-                        {
-                            goto start;
-                        }
-                    }
-                    else if (input == "2")
-                    {
-                        Console.WriteLine("Which score would you like to remove? 1 for titan, 2 for legend, 3 for champion.");
-                        input = Console.ReadLine();
-                        while (!(int.TryParse(input, out inNum)))
-                        {
-                            Console.WriteLine("Incorrect selection, please try again.");
-                            input = Console.ReadLine();
-                        }
-                        if (input == "1")
-                        {
-                            Console.WriteLine("Which titan score would you like to remove?");
-                            input = Console.ReadLine();
-                            while (string.IsNullOrWhiteSpace(input))
-                            {
-                                Console.WriteLine("nothing was entered, please try again.");
-                                input = Console.ReadLine();
-                            }
-                            titanS.Remove(input);
-                            Console.WriteLine("REMOVED");
-                            Console.WriteLine("Are you sure your finished? Y for yes N for no.");
-                            ans = Console.ReadLine();
-                            while (string.IsNullOrWhiteSpace(ans))
-                            {
-                                Console.WriteLine("Nothing was entered, please try again.");
-                                ans = Console.ReadLine();
-                            }
-                            if (ans == "y")
-                            {
-                                Console.WriteLine("Goodbye");
-                                Thread.Sleep(2000);
-                                Console.Clear();
-                            }
-                            else if (ans == "n")
-                            {
-                                goto start;
-                            }
-                        }
-                        else if (input == "2")
-                        {
-                            Console.WriteLine("Which legend score would you like to remove?");
-                            input = Console.ReadLine();
-                            while (string.IsNullOrWhiteSpace(input))
-                            {
-                                Console.WriteLine("nothing was entered, please try again.");
-                                input = Console.ReadLine();
-                            }
-                            legendS.Remove(input);
-                            Console.WriteLine("REMOVED");
-                            Console.WriteLine("Are you sure your finished? Y for yes N for no.");
-                            ans = Console.ReadLine();
-                            while (string.IsNullOrWhiteSpace(ans))
-                            {
-                                Console.WriteLine("Nothing was entered, please try again.");
-                                ans = Console.ReadLine();
-                            }
-                            if (ans == "y")
-                            {
-                                Console.WriteLine("Goodbye");
-                                Thread.Sleep(2000);
-                                Console.Clear();
-                            }
-                            else if (ans == "n")
-                            {
-                                goto start;
-                            }
-                        }
-                        else if (input == "3")
-                        {
-                            Console.WriteLine("Which champion score would you like to remove?");
-                            input = Console.ReadLine();
-                            while (string.IsNullOrWhiteSpace(input))
-                            {
-                                Console.WriteLine("nothing was entered, please try again.");
-                                input = Console.ReadLine();
-                            }
-                            champS.Remove(input);
-                            Console.WriteLine("REMOVED");
-                            Console.WriteLine("Are you sure your finished? Y for yes N for no.");
-                            ans = Console.ReadLine();
-                            while (string.IsNullOrWhiteSpace(ans))
-                            {
-                                Console.WriteLine("Nothing was entered, please try again.");
-                                ans = Console.ReadLine();
-                            }
-                            if (ans == "y")
-                            {
-                                Console.WriteLine("Goodbye");
-                                Thread.Sleep(2000);
-                                Console.Clear();
-                            }
-                            else if (ans == "n")
-                            {
-                                goto start;
-                            }
-                        }
-                    }
-                }
-            }  
-            else if (input == "2")
-            {
-                start2:
+                start:
                 Console.WriteLine("What game would you like to look up?");
                 input = Console.ReadLine();
                 Console.Write("\r\n");
@@ -433,28 +136,28 @@ namespace ScoreBoard2
                     input = Console.ReadLine();
                 }
                 int listPos = titles.IndexOf(input);
-                Console.WriteLine(titles[listPos]+"\r\n"+titanS[listPos]+"\r\n"+legendS[listPos]+"\r\n"+champS[listPos]+"\r\n");
+                Console.WriteLine(titles[listPos] + "\r\n" + titanS[listPos] + "\r\n" + legendS[listPos] + "\r\n" + champS[listPos] + "\r\n");
                 Console.WriteLine("Would you like to find another game? Y for yes N for no.");
                 input = Console.ReadLine();
                 if (input == "y")
                 {
-                    goto start2;
+                    goto start;
                 }
                 if (input == "n")
                 {
-                    goto start;
+                    Console.WriteLine("Goodbye");
+                    Thread.Sleep(1000);
+                    Console.Clear();
                 }
             }
-            else if (input == "3")
+            if (input == "n")
             {
                 Console.WriteLine("Goodbye");
-                Thread.Sleep(2000);
+                Thread.Sleep(1000);
                 Console.Clear();
             }
-            Console.WriteLine(" ");
-            Thread.Sleep(1000);
 
-            while (go == true)
+            while (true)
             {
                 for (int huh = 0; huh < titles.Count; huh++)
                 {
@@ -584,10 +287,10 @@ namespace ScoreBoard2
                         }
                         Console.Write("\r\n");
                     }
-                    Console.Write("\r\nCoded by Seth Rudisill\r\n");
+                    Console.Write("\r\nAuthored by Seth Rudisill\r\n");
                     Console.WriteLine("\r\n-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
                     Thread.Sleep(3000);
-                    
+
                     //this converts the name and score into the character art
                     nameScoreTitan = titanS[huh];
                     char[] titan = convert(nameScoreTitan);

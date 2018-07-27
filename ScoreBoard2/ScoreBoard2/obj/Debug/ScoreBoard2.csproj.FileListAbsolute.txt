@@ -5,3 +5,10 @@ c:\users\seth  rudisill\source\repos\ScoreBoard2\ScoreBoard2\obj\Debug\ScoreBoar
 c:\users\seth  rudisill\source\repos\ScoreBoard2\ScoreBoard2\obj\Debug\ScoreBoard2.csproj.CoreCompileInputs.cache
 c:\users\seth  rudisill\source\repos\ScoreBoard2\ScoreBoard2\obj\Debug\ScoreBoard2.exe
 c:\users\seth  rudisill\source\repos\ScoreBoard2\ScoreBoard2\obj\Debug\ScoreBoard2.pdb
+\\vmware-host\Shared Folders\Desktop\Vortex_Scoreboard\ScoreBoard2\ScoreBoard2\bin\Debug\ScoreBoard2.exe.config
+\\vmware-host\Shared Folders\Desktop\Vortex_Scoreboard\ScoreBoard2\ScoreBoard2\bin\Debug\ScoreBoard2.exe
+\\vmware-host\Shared Folders\Desktop\Vortex_Scoreboard\ScoreBoard2\ScoreBoard2\bin\Debug\ScoreBoard2.pdb
+\\vmware-host\Shared Folders\Desktop\Vortex_Scoreboard\ScoreBoard2\ScoreBoard2\obj\Debug\ScoreBoard2.csprojResolveAssemblyReference.cache
+\\vmware-host\Shared Folders\Desktop\Vortex_Scoreboard\ScoreBoard2\ScoreBoard2\obj\Debug\ScoreBoard2.csproj.CoreCompileInputs.cache
+\\vmware-host\Shared Folders\Desktop\Vortex_Scoreboard\ScoreBoard2\ScoreBoard2\obj\Debug\ScoreBoard2.exe
+\\vmware-host\Shared Folders\Desktop\Vortex_Scoreboard\ScoreBoard2\ScoreBoard2\obj\Debug\ScoreBoard2.pdb
